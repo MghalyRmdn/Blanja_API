@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js"
   },
-  "author": "",
+  "author": "MghalyRmdn <mochammadghaly@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -17,6 +17,8 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
-    "nodemailer": "^6.4.17"
-  }
+    "nodemailer": "^6.4.17",
+    "nodemon": "^2.0.7"
+  },
+  "repository": "https://github.com/hendrasolih/backend-blanja.git"
 }

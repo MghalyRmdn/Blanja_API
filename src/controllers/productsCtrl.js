@@ -16,6 +16,20 @@ module.exports = {
       });
   },
 
+  viewAllProduct: (_, res) => {
+    productsModel
+      .viewAllProduct()
+      .then((data) => {
+        res.json({
+          status: 200,
+          data,
+        });
+      })
+      .catch((err) => {
+        form.error(res, err);
+      });
+  },
+
   postNewProductCtrl: (req, res) => {
     const images = JSON.stringify(
       req.files.map((e) => process.env.SERVER + "/images/" + e.filename)

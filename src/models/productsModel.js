@@ -104,6 +104,19 @@ exports.getAllProductsModel = (req) => {
   });
 };
 
+exports.viewAllProduct = () => {
+  return new Promise((resolve , reject) => {
+    const queryStr = "SELECT prd_id, prd_name, prd_brand, prd_price, prd_brand, prd_image, category_product.ctg_name, prd_rating, created_at FROM products JOIN category_product WHERE products.prd_ctg = category_product.ctg_id ";
+    db.query(queryStr , (err , data) => {
+      if (!err) {
+        resolve(data);
+      } else {
+        reject(err);
+      }
+    })
+  })
+}
+
 exports.postNewProduct = (req) => {
   // mendapat objek request dari client
   // melakukan query ke db
