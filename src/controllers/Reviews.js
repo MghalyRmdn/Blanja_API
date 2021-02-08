@@ -1,4 +1,4 @@
-const reviewsModel = require("../models/reviewsModel");
+const reviewsModel = require("../models/Reviews");
 const form = require("../helpers/form");
 
 module.exports = {

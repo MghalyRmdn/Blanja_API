@@ -1,5 +1,5 @@
-const authModel = require("../models/authModel");
-const authRouter = require("../routes/authRoutes");
+const authModel = require("../models/Auth");
+// const authRouter = require("../routes/authRoutes");
 const form = require("../helpers/form");
 const db = require("../configs/mySQL");
 const nodemailer = require("nodemailer");
@@ -90,15 +90,14 @@ module.exports = {
       .then(async (data) => {
         //form.success(res, data);
         let transporter = await nodemailer.createTransport({
-          host: process.env.EMAIL_HOST,
-          port: process.env.EMAIL_PORT,
+          service: "gmail",
           auth: {
-            user: process.env.EMAIL_USERNAME,
-            pass: process.env.EMAIL_PASSWORD,
+            user: process.env.EMAIL,
+            pass: process.env.PASS_EMAIL,
           },
         });
         const mailOptions = {
-          from: "Hendra <admin@blanja.com>",
+          from: "mochammadghaly@gmail.com",
           to: data.email,
           subject: "Reset Password",
           text: `Otp to reset password : ${data.otp}`,

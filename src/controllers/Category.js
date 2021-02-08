@@ -1,11 +1,10 @@
-const userModel = require("../models/userModel");
+const categoryModel = require("../models/Category");
 const form = require("../helpers/form");
 
 module.exports = {
-  getUser: (req, res) => {
-    const { id } = req.params;
-    userModel
-      .getUser(id)
+  getCategory: (req, res) => {
+    categoryModel
+      .getCategory()
       .then((data) => {
         console.log(data);
         res.json({
@@ -13,6 +12,7 @@ module.exports = {
         });
       })
       .catch((err) => {
+        console.log(err);
         form.error(res, err);
       });
   },

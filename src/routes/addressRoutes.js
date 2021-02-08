@@ -1,8 +1,11 @@
 const addressRouter = require("express").Router();
 
-const addressController = require("../controllers/addressCtrl");
+const addressController = require("../controllers/Address");
 
-addressRouter.post("/:id", addressController.postNewAddress);
-addressRouter.get("/:id", addressController.getAddress);
+const checkToken = require("../helpers/middlewares/checkToken");
+
+// addressRouter.post("/",checkToken.login ,checkToken.seller,addressController.postNewAddress);
+addressRouter.post("/",checkToken.login ,checkToken.seller,addressController.postNewAddress);
+addressRouter.get("/:id", checkToken.login , checkToken.seller, addressController.getAddress);
 
 module.exports = addressRouter;

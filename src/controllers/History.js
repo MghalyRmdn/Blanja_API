@@ -9,16 +9,17 @@ function generateOTP() {
 
   // Find the length of string
   var len = string.length;
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 10; i++) {
     OTP += string[Math.floor(Math.random() * len)];
   }
   return OTP;
 }
 
 module.exports = {
-  getHistoryCtrl: (req, res) => {
+  getHistory: (req, res) => {
+    const { id } = req.params;
     historyModel
-      .getHistory()
+      .getHistory(id)
       .then((results) => {
         res.json(results);
       })
@@ -29,21 +30,23 @@ module.exports = {
 
   postHistory: (req, res) => {
     const { body } = req;
-    const year = new Date().getFullYear();
     const id = body.user_id;
+    const year = new Date().getFullYear();
     const randomChar = generateOTP();
-    const insertData = {
+    const insertBody = {
       ...body,
-      invoice_id: `INV/${year}/${id}/${randomChar}`,
+      invoice: `INV/${year}/${id}/${randomChar}`,
+      created_at: new Date(Date.now()),
     };
+    console.log(insertBody);
     historyModel
-      .postHistory(insertData)
+      .postHistory(insertBody, res)
       .then((data) => {
         console.log(data);
         res.json({
-          msg: "history berhasil ditambahkan",
+          msg: "transaction success",
           data,
-        });
+        })
       })
       .catch((err) => {
         form.error(res, err);
