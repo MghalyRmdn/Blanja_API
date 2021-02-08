@@ -1,6 +1,6 @@
 const reviewsRouter = require("express").Router();
 
-const reviewsController = require("../controllers/reviewsCtrl");
+const reviewsController = require("../controllers/Reviews");
 
 reviewsRouter.post("/:id", reviewsController.postNewReview);
 reviewsRouter.get("/:id", reviewsController.getReview);

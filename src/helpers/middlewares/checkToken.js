@@ -62,6 +62,18 @@ module.exports = {
       next();
     }
   },
+  customer: (req, res, next) => {
+    const { level } = req.decodeToken;
+    if (level == "Customer") {
+      form.error(res, {
+        status: 401,
+        msg: `Unauthorized Access`,
+        details: `Yout dont have permission to access this page.`,
+      });
+    } else {
+      next();
+    }
+  },
 };
 /*
 module.exports = (req, res, next) => {

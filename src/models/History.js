@@ -4,7 +4,7 @@ module.exports = {
   getHistory: (id) => {
     return new Promise((resolve, reject) => {
       const queryString =
-        'SELECT h.id_transaction , h.user_id , h.product_id , h.invoice , h.qty , h.total , h.created_at FROM history_transactions AS h JOIN users AS u on u.id  = h.user_id WHERE h.user_id = ?';
+        'SELECT h.id , h.user_id , h.prd_id , h.invoice , h.qty ,h.price AS total , h.created_at , u.user_name FROM history_transactions AS h JOIN users AS u on u.id  = h.user_id WHERE h.user_id = ?';
       db.query(queryString,id ,(err, results) => {
         if (!err) {
           resolve(results);

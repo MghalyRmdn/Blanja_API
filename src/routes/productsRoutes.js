@@ -1,6 +1,6 @@
 const productsRouter = require("express").Router();
 
-const productsCtrl = require("../controllers/productsCtrl");
+const productsCtrl = require("../controllers/Products");
 
 const checkToken = require("../helpers/middlewares/checkToken");
 

@@ -1,4 +1,4 @@
-const historyModel = require("../models/historyModel");
+const historyModel = require("../models/History");
 const form = require("../helpers/form");
 
 function generateOTP() {
@@ -37,12 +37,12 @@ module.exports = {
       ...body,
       invoice: `INV/${year}/${id}/${randomChar}`,
       created_at: new Date(Date.now()),
+      status: 'Menunggu Pembayaran'
     };
     console.log(insertBody);
     historyModel
       .postHistory(insertBody, res)
       .then((data) => {
-        console.log(data);
         res.json({
           msg: "transaction success",
           data,
