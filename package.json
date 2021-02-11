@@ -4,7 +4,7 @@
   "description": "backend from blanja app",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon app.js"
   },
   "author": "MghalyRmdn <mochammadghaly@gmail.com>",
   "license": "ISC",
@@ -21,5 +21,5 @@
     "nodemon": "^2.0.7",
     "socket.io": "^3.1.1"
   },
-  "repository": "https://github.com/hendrasolih/backend-blanja.git"
+  "repository": "https://github.com/MghalyRmdn/Blanja_API.git"
 }

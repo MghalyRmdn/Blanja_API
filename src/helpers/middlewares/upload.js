@@ -1,38 +1,40 @@
-const { diskStorage } = require("multer");
 const multer = require("multer");
 const path = require("path");
 
-const form = require("../form");
-
 const multerStorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./public/images");
-  },
-  filename: function (req, file, cb) {
-    const nameFormat = `${Date.now()}-${file.fieldname}${path.extname(
-      file.originalname
-    )}`;
-    cb(null, nameFormat);
-  },
+    destination: function (req, file, cb) {
+        cb(null, "./public/images");
+    },
+    filename: function (req, file, cb) {
+        const nameFormat = `img-${Date.now()}${path.extname(
+            file.originalname
+        )}`;
+        cb(null, nameFormat);
+    },
 });
 
 const upload = multer({
-  storage: multerStorage,
-  limits: 2 * 1000 * 1000, //2Mb
+    storage: multerStorage,
+    limits: { fileSize: 10 * 1024 * 1024 } // 2 MB
 });
 
-const singleUpload = (req, res, next) => {
-  const uploadSingle = upload.single("image");
-  uploadSingle(req, res, (err) => {
-    if (err) {
-      form.error(res, {
-        msg: "Multer Error",
-        err,
-      });
-    } else {
-      next();
-    }
-  });
+const multiUpload = (req, res, next) => {
+    const uploadMultiple = upload.array("image", 5);
+    uploadMultiple(req, res, (err) => {
+        if (err) {
+            res.status(500).json({
+                message:'Multer ERROR',
+                details:err
+            })
+        } else {
+            let filePath = req.files.map((val) => "/images/" + val.filename)
+
+            req.filePath = filePath.join(',')
+            next();
+        }
+    });
 };
 
-module.exports = singleUpload;
+
+
+module.exports = multiUpload;

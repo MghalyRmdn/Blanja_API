@@ -34,8 +34,6 @@ mainRouter.use("/auth", authRouter); // localhost:8000/auth
 mainRouter.use("/upload", imageUploadRouter); // localhost:8000/upload
 mainRouter.use(
   "/update",
-  checkToken.login,
-  checkToken.seller,
   updateMultipleUpload
 ); // localhost:8000/upload
 mainRouter.use("/review", reviewsRouter); // localhost:8000/reviews

@@ -136,4 +136,14 @@ module.exports = {
         res.json(err);
       });
   },
+  changePassword:(req,res) =>{
+    const {body} = req
+    authModel.userChangePassword(body)
+    .then((result) => {
+        res.status(result.status).json(result)
+    }).catch((error) => {
+      console.log(error)
+        res.status(error.status).json(error)
+    })
+},
 };

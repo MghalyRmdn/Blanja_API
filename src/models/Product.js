@@ -5,7 +5,7 @@ module.exports = {
     const { id } = req.params;
     return new Promise((resolve, reject) => {
       const qs =
-        "SELECT p.prd_id, p.prd_name, p.prd_brand, p.prd_price, p.prd_description, p.prd_image, c.ctg_name, p.prd_rating, p.cndtn_id, p.size_id, p.prd_ctg , p.user_id , p.user_name FROM products AS p, category_product AS c , users AS u  WHERE p.prd_ctg = c.ctg_id AND p.user_id  = u.id  AND p.prd_id = ?";
+        "SELECT p.prd_id, p.prd_name, p.prd_brand, p.prd_price, p.prd_description, p.prd_image, c.ctg_name, p.prd_rating, p.cndtn_id, p.size_id, p.prd_ctg, p.user_id, u.user_name FROM products AS p, category_product AS c, users AS u  WHERE p.prd_ctg = c.ctg_id AND p.user_id = u.id AND p.prd_id = ?";
       db.query(qs, id, (err, data) => {
         console.log(id);
         // console.log(level);
@@ -18,6 +18,22 @@ module.exports = {
     });
   },
 
+  getProductByUserId: (req) => {
+    const { id } = req.params;
+    return new Promise((resolve, reject) => {
+      const qs =
+        "SELECT p.prd_id, p.prd_name, p.prd_brand, p.prd_price, p.prd_description, p.prd_image, c.ctg_name, p.prd_rating, p.size_id , p.created_at FROM products AS p JOIN category_product AS c ON p.prd_ctg = c.ctg_id WHERE p.user_id = ? ORDER BY created_at ASC";
+      db.query(qs, id, (err, data) => {
+        console.log(id);
+        // console.log(level);
+        if (!err) {
+          resolve(data);
+        } else {
+          reject(err);
+        }
+      });
+    });
+  },
   updateProductById: (req) => {
     const { body } = req;
     const { id } = req.params;

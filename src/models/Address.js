@@ -32,7 +32,7 @@ exports.postNewAddress = (insertBody) => {
 exports.getAddress = (id) => {
   return new Promise((resolve, reject) => {
     const qs =
-      'SELECT a.id , a.address, u.user_name  FROM address AS a JOIN users AS u on a.user_id = u.id WHERE a.user_id = '+ id;
+      'SELECT a.id , a.address, u.user_name  FROM address AS a JOIN users AS u on a.user_id = u.id  WHERE a.user_id = '+ id + ' ORDER BY created_at DESC';
     db.query(qs, id, (err, data) => {
       if (!err) {
         resolve(data);

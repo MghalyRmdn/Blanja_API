@@ -12,7 +12,7 @@ productsRouter.post(
   "/",
   multiUpload,
   checkToken.login,
-  checkToken.seller,
+  checkToken.customer,
   productsCtrl.postNewProductCtrl
 );
 

@@ -22,6 +22,25 @@ module.exports = {
       });
   },
 
+  getProductByUserId: (req, res) => {
+    productModel
+      .getProductByUserId(req)
+      .then((data) => {
+        if (data.length) {
+          res.json({
+            data,
+          });
+        } else {
+          res.status(404).json({
+            msg: "Data not Found",
+          });
+        }
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  },
+
   updateProductPut: (req, res) => {
     const { body } = req;
     const { id } = req.params;
@@ -60,7 +79,7 @@ module.exports = {
     const { id } = req.params;
 
     const images = JSON.stringify(
-      req.files.map((e) => process.env.SERVER + "/images/" + e.filename)
+      req.files.map((e) => "http://192.168.43.173/images/" + e.filename)
     );
 
     // set for update

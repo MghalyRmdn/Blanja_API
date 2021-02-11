@@ -24,11 +24,13 @@ exports.getAllProductsModel = (req) => {
   } else if (filter == "name") {
     order = "ORDER BY prd_name ";
   } else if (filter == "update ") {
-    order = "ORDER BY updated_at ";
+    order = "ORDER BY updated_at ASC";
   } else if (filter == "rating") {
     order = "ORDER BY prd_rating DESC ";
   } else if (filter == "new") {
     order = "ORDER BY created_at DESC ";
+  } else if (filter == "priceD") {
+    order = "ORDER BY prd_price DESC ";
   } else {
     order = "";
     desc = "";
@@ -104,19 +106,6 @@ exports.getAllProductsModel = (req) => {
   });
 };
 
-exports.viewAllProduct = () => {
-  return new Promise((resolve , reject) => {
-    const queryStr = "SELECT prd_id, prd_name, prd_brand, prd_price, prd_brand, prd_image, category_product.ctg_name, prd_rating, created_at FROM products JOIN category_product WHERE products.prd_ctg = category_product.ctg_id ";
-    db.query(queryStr , (err , data) => {
-      if (!err) {
-        resolve(data);
-      } else {
-        reject(err);
-      }
-    })
-  })
-}
-
 exports.postNewProduct = (req) => {
   // mendapat objek request dari client
   // melakukan query ke db
@@ -124,7 +113,7 @@ exports.postNewProduct = (req) => {
   //const img = process.env.SERVER + "/images/" + req.file.filename; for single
   console.log(req.files);
   const images = JSON.stringify(
-    req.files.map((e) => process.env.SERVER + "/images/" + e.filename)
+    req.files.map((e) => process.env.RN + "/images/" + e.filename)
   );
   const { body } = req;
   const insertBody = {
@@ -137,6 +126,20 @@ exports.postNewProduct = (req) => {
   return new Promise((resolve, reject) => {
     const qs = "INSERT INTO products SET ?";
     db.query(qs, insertBody, (err, data) => {
+      if (!err) {
+        resolve(data);
+      } else {
+        reject(err);
+      }
+    });
+  });
+};
+
+exports.getAllWithRatings = () => {
+  return new Promise((resolve, reject) => {
+    const qs =
+      "SELECT p.prd_id, p.prd_name, p.prd_brand, p.prd_price, p.prd_description, p.size_id, p.prd_image, p.prd_ctg, p.prd_rating, COUNT(r.review) AS total_review,  AVG(r.rating) AS rating_product FROM products AS p LEFT JOIN reviews AS r ON p.prd_id = r.prd_id GROUP BY p.prd_id ORDER BY `total_review` DESC LIMIT 10";
+    db.query(qs, (err, data) => {
       if (!err) {
         resolve(data);
       } else {
