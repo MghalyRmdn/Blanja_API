@@ -91,6 +91,8 @@ module.exports = {
         //form.success(res, data);
         let transporter = await nodemailer.createTransport({
           service: "gmail",
+          host: 'smtp.gmail.com',
+          port: 578,
           auth: {
             user: process.env.EMAIL,
             pass: process.env.PASS_EMAIL,
@@ -146,4 +148,13 @@ module.exports = {
         res.status(error.status).json(error)
     })
 },
+tokenlogin: (req, res) => {
+  try {
+    res.status(200).json({
+      msg: "token valid",
+    })
+  } catch (error) {
+    form.error(res, err)
+  }
+}
 };

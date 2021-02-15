@@ -3,8 +3,8 @@ const express = require("express");
 const mainRouter = express.Router();
 
 const welcomeRouter = require("./welcome"); //no need
-const sizeRouter = require("./size"); //no need
-const colorRouter = require("./color"); // no need
+// const sizeRouter = require("./size"); //no need
+// const colorRouter = require("./color"); // no need
 const updateMultipleUpload = require("./products");
 
 //just upload
@@ -19,6 +19,9 @@ const reviewsRouter = require("./reviewsRoutes");
 const addressRouter = require("./addressRoutes");
 const categoryRouter = require("./categoryRoutes");
 const userRouter = require("./userRoutes");
+const colorRouter = require("./colorRoutes");
+const sizeRouter = require("./sizeRoutes");
+const chatRouter = require("./chatRoutes");
 
 const checkToken = require("../helpers/middlewares/checkToken");
 //const checkSeller = require("../helpers/middlewares/checkSeller");
@@ -32,12 +35,10 @@ mainRouter.use("/size", sizeRouter); // localhost:8000/size
 mainRouter.use("/color", colorRouter); // localhost:8000/color
 mainRouter.use("/auth", authRouter); // localhost:8000/auth
 mainRouter.use("/upload", imageUploadRouter); // localhost:8000/upload
-mainRouter.use(
-  "/update",
-  updateMultipleUpload
-); // localhost:8000/upload
+mainRouter.use("/update", updateMultipleUpload); // localhost:8000/upload
 mainRouter.use("/review", reviewsRouter); // localhost:8000/reviews
 mainRouter.use("/address", addressRouter); // localhost:8000/address
 mainRouter.use("/category", categoryRouter); // localhost:8000/category
 mainRouter.use("/user", userRouter); // localhost:8000/user
+mainRouter.use("/chat", chatRouter); // localhost:800/chat
 module.exports = mainRouter;
