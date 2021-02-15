@@ -16,4 +16,16 @@ module.exports = {
         form.error(res, err);
       });
   },
+  getBrand: (_,res)=> {
+    categoryModel.getBrand()
+    .then(data => {
+      res.json({
+        data,
+      })
+    })
+    .catch(err => {
+      console.log(err);
+      form.error(res, err);
+    })
+  }
 };

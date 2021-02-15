@@ -55,6 +55,7 @@ module.exports = {
           const newResObj = {
             id: user_id,
             ...insertBody,
+            msg: 'Data Adrress Updated'
           };
           form.success(res, newResObj);
         }

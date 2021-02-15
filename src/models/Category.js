@@ -1,3 +1,4 @@
+const { query } = require("../configs/mySQL");
 const db = require("../configs/mySQL");
 
 exports.getCategory = () => {
@@ -10,6 +11,22 @@ exports.getCategory = () => {
         reject({
           status: 500,
           msg: "Internal Server Error",
+        });
+      }
+    });
+  });
+};
+
+exports.getBramd = () => {
+  return new Promise((resolve, reject) => {
+    const queryStr = "SELECT DISTINCT prd_brand FROM products";
+    db.query(queryStr, (err, data) => {
+      if (!err) {
+        resolve(data);
+      } else {
+        reject({
+          status: 500,
+          message: "Internal Server Error",
         });
       }
     });

@@ -37,7 +37,6 @@ module.exports = {
       ...body,
       invoice: `INV/${year}/${id}/${randomChar}`,
       created_at: new Date(Date.now()),
-      status: 'Menunggu Pembayaran'
     };
     console.log(insertBody);
     historyModel
@@ -46,7 +45,35 @@ module.exports = {
         res.json({
           msg: "transaction success",
           data,
-        })
+        });
+      })
+      .catch((err) => {
+        form.error(res, err);
+      });
+  },
+  getHistoryBySellerId: (req, res) => {
+    const { id } = req.params;
+    historyModel
+      .getHistoryBySellerId(id)
+      .then((data) => {
+        console.log(data);
+        res.json({
+          data,
+        });
+      })
+      .catch((err) => {
+        form.error(res, err);
+      });
+  },
+  updateStatus: (req, res) => {
+    const { id, status } = req.body;
+    historyModel
+      .updateStatus(id, status)
+      .then((data) => {
+        console.log(data);
+        res.json({
+          data,
+        });
       })
       .catch((err) => {
         form.error(res, err);
