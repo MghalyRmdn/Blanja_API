@@ -1,4 +1,4 @@
-# Backend Blanja
+#  Blanja RestFull API
 
 backend for web aplication Blanja
 
