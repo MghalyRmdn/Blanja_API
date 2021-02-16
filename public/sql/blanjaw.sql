@@ -32,7 +32,7 @@ CREATE TABLE `address` (
   `id` int(11) NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` int(11) NOT NULL,
-  `created_at` date NOT NULL DEFAULT current_timestamp()
+  `created_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `history_transactions` (
   `user_id` int(11) NOT NULL,
   `seller_id` int(11) NOT NULL,
   `price` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` date NOT NULL DEFAULT current_timestamp()
+  `created_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -199,8 +199,8 @@ CREATE TABLE `products` (
   `prd_ctg` int(11) NOT NULL,
   `prd_ctg_gender` int(11) DEFAULT NULL,
   `prd_rating` float NOT NULL,
-  `created_at` date NOT NULL DEFAULT current_timestamp(),
-  `updated_at` date NOT NULL DEFAULT current_timestamp()
+  `created_at` date NOT NULL,
+  `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
