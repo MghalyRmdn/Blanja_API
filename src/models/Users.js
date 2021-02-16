@@ -20,19 +20,13 @@ exports.getUser = (id) => {
 
 exports.updateProfile = (body, id) => {
   return new Promise((resolve, reject) => {
-    const queryStr = `UPDATE users SET ? WHERE id=?`;
-    db.query(queryStr, [body, id], (err, data) => {
+    const queryStr = `UPDATE users SET ? WHERE id=${id}`;
+    db.query(queryStr, body, (err, data) => {
       if (!err) {
-        resolve({
-          status: 200,
-          message: "Data berhsail update",
-          data: body,
-        });
+        console.log(data)
+        resolve(data);
       } else {
-        reject({
-          status: 500,
-          message: err,
-        });
+        reject(err);
       }
     });
   });

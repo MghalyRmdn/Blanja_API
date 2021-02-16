@@ -1,12 +1,18 @@
 module.exports = {
   success: (res, data) => {
     const resObject = {
+      success: true,
       status: 200,
       data,
     };
     res.json(resObject);
   },
   error: (res, err) => {
-    res.status(err.status || 500).json(err);
+    const resObject = {
+      success: false,
+      status: 500,
+      err,
+    }
+    res.json(resObject);
   },
 };

@@ -17,16 +17,14 @@ module.exports = {
       });
   },
   updateProfile: (req, res) => {
-    const { body } = req;
-    console.log(req);
-    const { id } = req.params;
     userModel
-      .updateProfile(body, id)
+      .updateProfile(req.body, req.params.id)
       .then((data) => {
-        res.json({
-          status: 200,
-          data,
-        });
+       const responseData = {
+         ...req.body,
+         message: "Update Successfully",
+       };
+       form.success(res, responseData);
       })
       .catch((err) => {
         form.error(res, err);
