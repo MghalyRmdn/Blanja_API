@@ -199,8 +199,8 @@ CREATE TABLE `products` (
   `prd_ctg` int(11) NOT NULL,
   `prd_ctg_gender` int(11) DEFAULT NULL,
   `prd_rating` float NOT NULL,
-  `created_at` date NOT NULL DEFAULT current_timestamp(),
-  `updated_at` date NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
