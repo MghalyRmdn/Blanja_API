@@ -27,7 +27,7 @@ const multiUpload = (req, res, next) => {
                 details:err
             })
         } else {
-            let filePath = req.files.map((val) => "/images/" + val.filename)
+            let filePath = req.files.map((val) => process.env.SERVER + "/images/" + val.filename)
 
             req.filePath = filePath.join(',')
             next();

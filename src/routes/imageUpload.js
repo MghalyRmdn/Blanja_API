@@ -14,8 +14,9 @@ const multiUpload = require("../helpers/middlewares/multiUpload");
 imageUploadRouter.post("/", multiUpload, (req, res) => {
   //const filePath = "/images/" + req.file.filename;
   //const filePath = req.files;
+  const toupload = process.env.SERVER 
   const filesPath = JSON.stringify(
-    req.files.map((e) => "http:192.168.43.173:8000/images/" + e.filename)
+    req.files.map((e) => toupload + '/images/' + e.filename)
   );
   const back = JSON.parse(filesPath);
   res.json({ string: filesPath, arrJson: back });

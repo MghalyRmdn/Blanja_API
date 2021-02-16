@@ -77,9 +77,9 @@ module.exports = {
   updtPatchCtrl: (req, res) => {
     const { body } = req;
     const { id } = req.params;
-
+    const url =  process.env.SERVER;
     const images = JSON.stringify(
-      req.files.map((e) => "http://192.168.43.173/images/" + e.filename)
+      req.files.map((e) => url + "/images/" + e.filename)
     );
 
     // set for update

@@ -113,7 +113,7 @@ exports.postNewProduct = (req) => {
   //const img = process.env.SERVER + "/images/" + req.file.filename; for single
   console.log(req.files);
   const images = JSON.stringify(
-    req.files.map((e) => process.env.RN + "/images/" + e.filename)
+    req.files.map((e) => process.env.SERVER + "/images/" + e.filename)
   );
   const { body } = req;
   const insertBody = {

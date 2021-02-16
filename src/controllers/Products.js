@@ -32,7 +32,7 @@ module.exports = {
 
   postNewProductCtrl: (req, res) => {
     const images = JSON.stringify(
-      req.files.map((e) => process.env.SERVER + "/images/" + e.filename)
+      req.files.map((e) => process.env.SERVER +"/images/" + e.filename)
     );
     const { body } = req;
     console.log(body);
