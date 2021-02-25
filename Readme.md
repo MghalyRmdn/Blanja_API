@@ -1,31 +1,43 @@
-#  Blanja RestFull API
+# REST API Blanja Web
 
-backend for web aplication Blanja
+This is a repository that providing a REST API to Blanja Web. For Blanja Web repository, you can check it in [here](https://github.com/Baruak-da-Familia/blanja-frontend)
 
-## Technology
+Before using this API we need some application installed in our PC or Laptop:
+<table>
+  <tr>
+    <td valign="center"><img src="https://code.visualstudio.com/assets/favicon.ico" height="200px" width="250px"></td>
+    <td valign="center"><img src="https://thekenyandev.com/static/ea6d8fe57ed02c773ad10ca3003b2451/nodejs.png" height="200px" width="250px"></td>
+    <td valign="center"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/78/XAMPP_logo.svg/1200px-XAMPP_logo.svg.png" height="200px" width="250px"></td>
+  </tr>
+ </table>
 
-Javascript
+- [Visual Studio Code](https://code.visualstudio.com/)
 
-node JS
+- [Nodejs](https://nodejs.org/en/)
 
-Express JS
+- [XAMPP](https://www.apachefriends.org/index.html)
 
-Mysql for database management
+### Install
 
-## API Endopoint
+In your Visual Studio Code Terminal, run:
 
-GET All Products
+    mkdir 'your project name'
+    cd 'your project name'
+    npm init
 
-```sh
-http://localhost:8000/products
-```
+After that install Expressjs in your project with command:
 
-GET A Product
+    npm install express
 
-```sh
-http://localhost:8000/product/:id
-```
+After that you can install package that you need in your project with command:
 
-```sh
-For more information about this API, you can visit my api documentation on https://documenter.getpostman.com/view/9503446/TWDTLJa2
-```
+    npm install 'package name'
+
+### Run the app
+
+    npm run server
+
+## REST API
+
+The REST API to the Blanja Web is described in this Postman Documentation: <https://documenter.getpostman.com/view/9503446/TWDcDtdF>.
+<i>Note: change the IP and Port with http://localhost:your_port if you yet deploy the app, or change it with your IP deploy</i>
