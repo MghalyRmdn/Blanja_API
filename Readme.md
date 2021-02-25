@@ -1,7 +1,5 @@
 # REST API Blanja Web
 
-This is a repository that providing a REST API to Blanja Web. For Blanja Web repository, you can check it in [here](https://github.com/Baruak-da-Familia/blanja-frontend)
-
 Before using this API we need some application installed in our PC or Laptop:
 <table>
   <tr>
